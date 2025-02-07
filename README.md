@@ -15,11 +15,10 @@ wait for this msg
 ```
 it will show this
 
-prompts        isl            osl            con            req_throughput median_e2e     median_ttft    median_tpot
-200            3200           800            4              
-200            3200           800            8              
-200            3200           800            16             
-200            3200           800            32             
-200            3200           800            64             
-200            3200           800            128            
-200            3200           800            256            
+prompts|isl|osl|con|req_throughput|median_e2e|median_ttft|median_tpot
+200.00|3200|800|4||||
+200.00|3200|800|8||||
+200.00|3200|800|16||||
+200.00|3200|800|32||||
+200.00|3200|800|64||||
+200.00|3200|800|128||||
