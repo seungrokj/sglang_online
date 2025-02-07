@@ -46,7 +46,6 @@ export RPDT_AUTOFLUSH=1
 export HSA_NO_SCRATCH_RECLAIM=1
 
 nohup runTracer.sh python3 -m sglang.launch_server --model deepseek-ai/DeepSeek-V3 --tp 8 --trust-remote-code --disable-radix-cache &
-grep ready nohup.out
 ```
 
 After the sglang is initialized and the model is loaded to GPU memory, you can check this message 
@@ -54,7 +53,7 @@ After the sglang is initialized and the model is loaded to GPU memory, you can c
 ```bash
 grep ready nohup.out
 
-#[2025-02-07 05:09:21] The server is fired up and ready to roll!
+# [2025-02-07 05:09:21] The server is fired up and ready to roll!
 ```
 
 ## Access from a client
@@ -76,28 +75,31 @@ python3 -m sglang.bench_serving \
 
 ```
 
-After the client collects the performance data, please turn off the sglang server by this command
+After the client collects the performance data, turn off the sglang server by this command
 
 ```bash
 fg
-ctrl+c
+
+# terminate the sglang server
+# Ctrl+c
 ```
 
 ## RPD profile data conversion and visualization
 
-Trim the profile json data, by --start and --end arguments in rpd2tracing.py and compress the json trace. 
+Trim the profile data, by --start and --end arguments in rpd2tracing.py and compress the json trace. 
 
 ```bash
 python rocmProfileData/tools/rpd2tracing.py trace.rpd trace.out --start 98% --end 100%
-/workspace/rocmProfileData/tools/rpd2tracing.py:223: SyntaxWarning: invalid escape sequence '\('
-  '''
-Timestamps:
-            first:      98564390209.637 us
-             last:      99189995987.185 us
-         duration:      625.605777548 seconds
 
-Filter: where rocpd_api.start/1000 >= 99177483871.63405 and rocpd_api.start/1000 <= 99189995987.185
-Output duration: 12.512115550949098 seconds
+# /workspace/rocmProfileData/tools/rpd2tracing.py:223: SyntaxWarning: invalid escape sequence '\('
+#   '''
+# Timestamps:
+#             first:      98564390209.637 us
+#              last:      99189995987.185 us
+#          duration:      625.605777548 seconds
+# 
+# Filter: where rocpd_api.start/1000 >= 99177483871.63405 and rocpd_api.start/1000 <= 99189995987.185
+# Output duration: 12.512115550949098 seconds
 
 gzip -c trace.json > trace.json.gz
 ```
