@@ -13,5 +13,13 @@ wait for this msg
 ```bash
 ./client.sh
 ```
+it will show this
 
-
+prompts        isl            osl            con            req_throughput median_e2e     median_ttft    median_tpot
+200            3200           800            4              
+200            3200           800            8              
+200            3200           800            16             
+200            3200           800            32             
+200            3200           800            64             
+200            3200           800            128            
+200            3200           800            256            
